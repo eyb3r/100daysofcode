@@ -6,8 +6,10 @@ LEFT = 180
 DOWN = 270
 RIGHT = 0
 
+
 class Snake:
     def __init__(self, color='white'):
+        self.color = color
         self.body = [Turtle(), Turtle(), Turtle()]
         self.head = self.body[0]
         for i, segment in enumerate(self.body):
@@ -37,3 +39,11 @@ class Snake:
     def left(self):
         if self.head.heading() % 180:
             self.head.setheading(LEFT)
+
+    def extend(self):
+        new_segment = Turtle("square")
+        new_segment.color(self.color)
+        new_segment.penup()
+        new_segment.goto(self.body[-1].position())
+        self.body.append(new_segment)
+
