@@ -47,3 +47,9 @@ class Snake:
         new_segment.goto(self.body[-1].position())
         self.body.append(new_segment)
 
+    def restart(self):
+        for segment in self.body[3:]:
+            segment.hideturtle()
+        self.body = self.body[:3]
+        for segment in self.body:
+            segment.goto(0,0)

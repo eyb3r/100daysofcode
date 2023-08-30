@@ -13,7 +13,7 @@ screen.tracer(0)
 
 snake = Snake()
 food = Food()
-scoreboard = Scoreboard()
+scoreboard = Scoreboard('data.txt')
 screen.listen()
 screen.onkey(snake.up, "Up")
 screen.onkey(snake.down, "Down")
@@ -36,12 +36,12 @@ while game_is_on:
         or (snake.head.xcor() > 280 and snake.head.heading() == RIGHT) \
         or (snake.head.ycor() > 280 and snake.head.heading() == UP) \
         or (snake.head.ycor() < -280 and snake.head.heading() == DOWN):
-        scoreboard.game_over()
-        game_is_on = False
+        scoreboard.restart()
+        snake.restart()
 
     #detect collision with tail
     for segment in snake.body[1:]:
         if snake.head.distance(segment) < 10:
-            game_is_on = False
-            scoreboard.game_over()
+            scoreboard.restart()
+            snake.restart()
 screen.exitonclick()
