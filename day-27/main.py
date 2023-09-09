@@ -13,9 +13,8 @@ def print_result(val):
     return f'is equal to {round(val,5)}'
 
 
-def convert_from_km():
+def convert_from_km(target_unit):
     start = float(amount.get())
-    target_unit = listbox2.get(listbox2.curselection())
     match target_unit:
         case 'kilometer':
             result = start
@@ -32,9 +31,8 @@ def convert_from_km():
     lab_result.config(text=print_result(result))
 
 
-def convert_from_mile():
+def convert_from_mile(target_unit):
     start = float(amount.get())
-    target_unit = listbox2.get(listbox2.curselection())
     match target_unit:
         case 'kilometer':
             result = start * 1.609
@@ -51,9 +49,8 @@ def convert_from_mile():
     lab_result.config(text=print_result(result))
 
 
-def convert_from_yard():
+def convert_from_yard(target_unit):
     start = float(amount.get())
-    target_unit = listbox2.get(listbox2.curselection())
     match target_unit:
         case 'kilometer':
             result = start * 0.0009144
@@ -70,9 +67,8 @@ def convert_from_yard():
     lab_result.config(text=print_result(result))
 
 
-def convert_from_foot():
+def convert_from_foot(target_unit):
     start = float(amount.get())
-    target_unit = listbox2.get(listbox2.curselection())
     match target_unit:
         case 'kilometer':
             result = start * 0.0003048
@@ -89,9 +85,8 @@ def convert_from_foot():
     lab_result.config(text=print_result(result))
 
 
-def convert_from_meter():
+def convert_from_meter(target_unit):
     start = float(amount.get())
-    target_unit = listbox2.get(listbox2.curselection())
     match target_unit:
         case 'kilometer':
             result = start / 1000
@@ -110,20 +105,20 @@ def convert_from_meter():
 
 def convert_units(*args):
     start_unit = listbox1.get(listbox1.curselection())
-    global UNITS
+    target_unit = listbox2.get(listbox2.curselection())
     match start_unit:
         case 'kilometer':
-            convert_from_km()
+            convert_from_km(target_unit)
         case 'mile':
-            convert_from_mile()
+            convert_from_mile(target_unit)
         case 'yard':
-            convert_from_yard()
+            convert_from_yard(target_unit)
         case 'foot':
-            convert_from_foot()
+            convert_from_foot(target_unit)
         case 'meter':
-            convert_from_meter()
+            convert_from_meter(target_unit)
         case _:
-            convert_from_km()
+            pass
 
 
 amount = Entry(width=5)
